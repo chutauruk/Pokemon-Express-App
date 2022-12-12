@@ -17,10 +17,14 @@ app.get("/", (req, res) => {
     res.send("Welcome to the Pokemon App!");
   });
 
-  app.get ("/pokemon", (req, res) => {
-    res.render("Index")
-    
-})
+app.get ("/pokemon", (req, res) => {
+    res.render("Index", {pokemons: pokemon});
+});
+
+app.get ("/pokemon/:id", (req, res) => {
+    res.send(req.params.id);   
+});
+
 
 
 // Server Listener
