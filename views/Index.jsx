@@ -5,16 +5,23 @@ const myStyle = {
     backgroundColor: '#000000',
   };
 
-  class MyFirstComponent extends React.Component() {
-    return (
-      <div style={myStyle}>My First React Component!</div>;
-    }
-}
 
-function Index() {
+function Index( {pokemons} ) {
   return (
     <div>
         <h1>See All The Pokemon!</h1>
+    <ul>
+    {pokemons.map((pokemon, i) => {
+        return (
+            <li key = {i}>
+                <a href = {`/pokemon/${i}`}>
+                    {pokemon.name}
+                </a>
+                
+            </li>
+        )
+    })}
+    </ul>
     </div>
   )
 }
