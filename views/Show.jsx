@@ -1,31 +1,26 @@
 import React from "react";
-import pokemon from "../models/pokemon";
 
 const myStyle = {
-  color: "#ffffff",
-  backgroundColor: "#000000",
-};
+    color: "#3B7177",
+    backgroundColor: "#F1AAB7",
+    padding: "5px",
+    fontFamily: "Helvetica"
+  };
 
-const Show = ({ pokemons }) => {
+const Show = ({ pokemon }) => {
   return (
     <div>
-      <h1>Gotta Catch 'Em All</h1>
+      <h1 style={myStyle}>Gotta Catch 'Em All</h1>
       <h2>
         {pokemon.name.charAt(0).toUpperCase()}
         {pokemon.name.slice(1)}
       </h2>
-      <img src={`${pokemon.img}.jpg`} />
+      {/* <img src={`${pokemon.img}.jpg`} /> */}
+      <p>{pokemon.name}</p>
+      <p>{pokemon.color}</p>
+      {/* <p>{pokemon.isReadyToEvolve}</p> */}
       <br />
       <a href="/pokemon">Back</a>
-      <ul>
-        {pokemons.map((pokemon, i) => {
-          return (
-            <li key={i}>
-              <a href={`/pokemon/${i}`}>{pokemon.name}</a>
-            </li>
-          );
-        })}
-      </ul>
     </div>
   );
 };
