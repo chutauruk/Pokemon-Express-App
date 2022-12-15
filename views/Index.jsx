@@ -22,9 +22,16 @@ function Index( {pokemons} ) {
                 <a href = {`/pokemon/${pokemon.id}`}>
                     {pokemon.name}
                 </a>
+                <a href={`/pokemon/${pokemon._id}/edit`}>Edit This Pokemon</a>
+                <form
+                  action={`/pokemon/${pokemon._id}?_method=DELETE`}
+                  method="POST"
+                >
+                  <input type="submit" value="DELETE" />
+                  </form>
             </li>
         )
-    })}
+    });
     </ul>
     </div>
   )
