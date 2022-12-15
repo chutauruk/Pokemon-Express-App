@@ -41,7 +41,7 @@ function Index( {pokemons} ) {
                   method="POST"
                 >
                   <input type="submit" value="DELETE" />
-                  </form>
+                  </form> <br />
             </li>
         )
     })
