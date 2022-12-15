@@ -68,10 +68,49 @@ app.get('/pokemon/:id', (req, res) =>{
 });
 
 //Edit Route
+app.get("/pokemon/:id/edit", (req, res) => {
+    // get the id from params
+    const id = req.params.id;
+    // get the fruit from the database  
+    Pokemon.findById(id)
+      .then((pokemon) => {
+        // render Edit page and send fruit data
+        res.render("pokemon/Edit.jsx", { pokemon });
+      })
+      // send error as json
+      .catch((error) => {
+        console.log(error);
+        res.json({ error });
+      });
+  });
 
 //Update Route
+app.put("/pokemon/:id", (req, res) => {
+    // get the id from params
+    const id = req.params.id;
+    // check if the readyToEat property should be true or false
+    req.body.readyToEvolve = req.body.readyToEvolve === "on" ? true : false;
+    // update the pokemon
+    Pokemon.findByIdAndUpdate(id, req.body, { new: true })
+      .then((pokemon) => {
+        // redirect to main page after updating
+        res.redirect("/pokemon");
+      })
+      // send error as json
+      .catch((error) => {
+        console.log(error);
+        res.json({ error });
+      });
+  });
 
 //Delete Route
+Pokemon.deleteMany({}).then((data) => {
+    // Seed Starter Pokemons
+    Pokemon.create(startPokemons).then((data) => {
+      // send created fruits as response to confirm creation
+      res.json(data);
+    });
+  });
 
 // Routes
 ////////////////////////////////////////////
