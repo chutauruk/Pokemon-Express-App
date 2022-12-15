@@ -4,7 +4,8 @@ const myStyle = {
   color: "#3B7177",
   backgroundColor: "#F1AAB7",
   padding: "5px",
-  fontFamily: "Helvetica"
+  fontFamily: "Helvetica",
+  
 };
 
 

@@ -8,6 +8,7 @@ export default class New extends Component {
         <form action="/pokemon" method="post">
             Pokemon Name: <input type="text" name="name" /> <br />
             Pokemon Color: <input type="text" name="color" /> <br />
+            Pokemon Image: <input type="text" name="img" /> <br />
             Is Ready To Evolve: <input type="checkbox" name="readyToEvolve" /><br/>
             <input type="submit" name="" value="Create Pokemon" />
         </form>

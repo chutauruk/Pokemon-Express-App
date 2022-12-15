@@ -3,11 +3,15 @@ const mongoose = require('mongoose');
 const pokemonSchema = new mongoose.Schema({
     name : {
         type: String,
-        require: true,
+        required: true,
+    },
+    img: {
+        type: String,
+        required: true,
     },
     color : {
         type: String,
-        require: true,
+        required: true,
     },
     readyToEvolve: Boolean
 })

@@ -2,6 +2,7 @@
 require("dotenv").config(); // Load ENV Variables
 const mongoose = require('mongoose');
 const Pokemon = require('./models/pokemon');
+const express = require("express"); // import express
 
 //... and then farther down the file
 mongoose.set('strictQuery', true);
@@ -12,10 +13,6 @@ mongoose.connect(process.env.MONGO_URI, {
 mongoose.connection.once('open', ()=>{
   console.log('connected to mongo');
 })
-
-
-
-const express = require("express"); // import express
 
 // Database Connection
 // const Pokemon = require("./models/pokemon"); // import pokemon
@@ -40,7 +37,7 @@ app.get("/pokemon", (req, res) => {
 
 //New Route
 app.get('/pokemon/new', (req, res) => {
-    res.render('new');
+    res.render('New');
 });
 
 // app.get ("/pokemon/:id", (req, res) => {
@@ -48,14 +45,6 @@ app.get('/pokemon/new', (req, res) => {
 //         res.render("show", { pokemons: pokemon })
 //     }) 
 // });
-
-app.get('/pokemon/:id', (req, res) =>{
-    Pokemon.findById(req.params.id, (err, foundPokemon) =>{
-      res.render('Show', {
-         pokemon: foundPokemon
-      })
-    });
-});
 
 //Post/Create
 app.post('/pokemon', (req, res) =>{
@@ -65,15 +54,30 @@ app.post('/pokemon', (req, res) =>{
     req.body.readyToEvolve = false;
     }
     Pokemon.create(req.body, (error, createdPokemon) => {
-        res.send(createdPokemon);
+        res.redirect('/pokemon');
 })
 })
 
+// Show Route
+app.get('/pokemon/:id', (req, res) =>{
+    Pokemon.findById(req.params.id, (err, foundPokemon) =>{
+      res.render('Show', {
+         pokemon: foundPokemon
+      })
+    });
+});
+
+//Edit Route
+
+//Update Route
+
+//Delete Route
+
 // Routes
 ////////////////////////////////////////////
-app.get("/", (req, res) => {
-    res.send("Welcome to the Pokemon App!");
-  });
+// app.get("/", (req, res) => {
+//     res.send("Welcome to the Pokemon App!");
+//   });
 
 // app.get ("/pokemon", (req, res) => {
 //     res.render("Index", {pokemons: pokemon});
